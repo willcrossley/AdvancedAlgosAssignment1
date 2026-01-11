@@ -37,11 +37,6 @@ namespace AdvancedAlgosAssignment1
     {
         public void Match(Collection<Initiator> initiators, Collection<Selector> selectors)
         {
-            if (initiators.Count != selectors.Count)
-            {
-                throw new ArgumentException("Set sizes not equal");
-            }
-
             var sizeOfSet = initiators.Count;
             var remainingInitiators = new Queue<Initiator>(initiators);
             PreRunSetup(initiators, selectors);
