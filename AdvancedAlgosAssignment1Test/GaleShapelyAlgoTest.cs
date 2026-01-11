@@ -19,10 +19,10 @@ namespace AdvancedAlgosAssignment1Test
         }
 
         [Test]
-        public void SizeOneMatches() 
+        public void SizeOneMatches()
         {
-            var initiators = helper.CreateInitiators([new[] { 0 }]);
-            var selectors = helper.CreateSelectors([new[] { 0 }]);
+            var initiators = helper.CreateInitiators([[0]]);
+            var selectors = helper.CreateSelectors([[0]]);
 
             RunMatch(initiators, selectors);
 
@@ -31,31 +31,95 @@ namespace AdvancedAlgosAssignment1Test
         }
 
         [Test]
-        public void NoConflictingProposals() 
+        public void NoConflictingProposals()
         {
-            throw new NotImplementedException();
+            var initiators = helper.CreateInitiators([
+                [0, 1],
+                [1, 0],
+            ]);
+
+            var selectors = helper.CreateSelectors([
+                [0, 1],
+                [1, 0],
+            ]);
+
+            RunMatch(initiators, selectors);
+
+            int[] expectedInitiatorMatches = [0, 1];
+            int[] expectedSelectorMatches = [0, 1];
+
+            helper.AssertMatches(initiators, selectors, expectedInitiatorMatches, expectedSelectorMatches);
         }
 
         [Test]
-        public void SimpleConflictingProposal() 
+        public void SimpleConflictingProposal()
         {
-            throw new NotImplementedException();
+            var initiators = helper.CreateInitiators([
+                [0, 2, 1],
+                [0, 1, 2],
+                [1, 2, 0],
+            ]);
+
+            var selectors = helper.CreateSelectors([
+                [0, 1, 2],
+                [2, 0, 1],
+                [1, 0, 2],
+            ]);
+
+            RunMatch(initiators, selectors);
+
+            int[] expectedInitiatorMatches = [0, 2, 1];
+            int[] expectedSelectorMatches = [0, 2, 1];
+
+            helper.AssertMatches(initiators, selectors, expectedInitiatorMatches, expectedSelectorMatches);
         }
 
         [Test]
-        public void MoreInitiatorsThanSelectors() 
+        public void MoreInitiatorsThanSelectors()
         {
-            throw new NotImplementedException();
+            var initiators = helper.CreateInitiators([
+                [0, 1],
+                [0, 1],
+                [1, 0],
+            ]);
+
+            var selectors = helper.CreateSelectors([
+                [0, 1, 2],
+                [2, 0, 1],
+            ]);
+
+            RunMatch(initiators, selectors);
+
+            int[] expectedInitiatorMatches = [0, -1, 1];
+            int[] expectedSelectorMatches = [0, 2];
+
+            helper.AssertMatches(initiators, selectors, expectedInitiatorMatches, expectedSelectorMatches);
         }
 
         [Test]
-        public void MoreSelectorsThanInitiators() 
+        public void MoreSelectorsThanInitiators()
         {
-            throw new NotImplementedException();
+            var initiators = helper.CreateInitiators([
+                [0, 1, 2],
+                [2, 0, 1],
+            ]);
+
+            var selectors = helper.CreateSelectors([
+                [0, 1],
+                [0, 1],
+                [1, 0],
+            ]);
+
+            RunMatch(initiators, selectors);
+
+            int[] expectedInitiatorMatches = [0, 2];
+            int[] expectedSelectorMatches = [0, -1, 1];
+
+            helper.AssertMatches(initiators, selectors, expectedInitiatorMatches, expectedSelectorMatches);
         }
 
         [Test]
-        public void DuplicateInitiatorPrefernces() 
+        public void DuplicateInitiatorPrefernces()
         {
             throw new NotImplementedException();
         }
@@ -75,6 +139,12 @@ namespace AdvancedAlgosAssignment1Test
         [Repeat(10)]
         [Test]
         public void RandomisedStressTest()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Test]
+        public void TestOtherDataTypes()
         {
             throw new NotImplementedException();
         }
