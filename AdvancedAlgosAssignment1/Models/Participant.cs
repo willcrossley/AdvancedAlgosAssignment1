@@ -8,6 +8,10 @@ namespace AdvancedAlgosAssignment1.Models
 {
     internal class Participant
     {
+        /// <summary>
+        /// Preferences array stores the index of the opposing set.
+        /// So index 0 of this array is the index of the #1 pick of the other set
+        /// </summary>
         public int[] Preferences;
         public Participant Match;
 
@@ -15,5 +19,7 @@ namespace AdvancedAlgosAssignment1.Models
         {
             Preferences = preferences;
         }
+
+        public bool HasMatch() => Match != null;
     }
 }

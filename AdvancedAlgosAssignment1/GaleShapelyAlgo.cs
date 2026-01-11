@@ -1,6 +1,7 @@
 ﻿using AdvancedAlgosAssignment1.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,35 +20,82 @@ namespace AdvancedAlgosAssignment1
     //business objects not a group of arrays unless you are working on some super low level machines or want
     //to wrap your low level implementaion in a high level wrapper to fit a broader set of cases with one implementation.
 
-    //This implementation also generates a match for each participant AND returns a matrix for all matches to
-    //allow for match lookup from a single participant OR develop analytics on match effectiveness/bulk actions.
-    //I know its not the most space efficient but it allows for a wider range of applications, if the situation
-    //around why I was writing this algo was more descriptive I would pick just 1 but this gives flexibility.
+    //I also chose the output of this algorithm to be relations on each object rather than a 2D matrix of matches
+    //as its more applicable to the OO approach, and allows the use of queues to speed things up slightly, without
+    //having to do a lookup to get the index of the participant to make a match (if the matrix is storing the index of
+    //someones match at their position) or store the index on the participant which would be bad OO.
+
+    //I could also have chosen an object reference array for the preferences & hashmaps on an id for lookup rather than 
+    //index as it makes more sense from an OO perspective except it just means each Participant array must be 
+    //constructed then their preferences set, which is more pain than its worth for an algorithm focused project,
+    //but is what I would do if I were to write this for a real application, as usually participants exist before they
+    //make selections. This way I can create each object in one op for the tests.
 
     //--------------------------------------------- README ---------------------------------------------\\
+
     internal class GaleShapelyAlgo
     {
-        public int[][] Match(Initiator[] initiators, Selector[] selectors)
+        public void Match(Collection<Initiator> initiators, Collection<Selector> selectors)
         {
-            var remainingInitiators = new Queue<Initiator>(initiators);
-
-            if (initiators.Length != selectors.Length)
+            if (initiators.Count != selectors.Count)
             {
                 throw new ArgumentException("Set sizes not equal");
             }
 
+            var sizeOfSet = initiators.Count;
+            var remainingInitiators = new Queue<Initiator>(initiators);
+            PreRunSetup(initiators, selectors);
+
             while (remainingInitiators.Count > 0)
             {
-                var initiator = remainingInitiators.Peek();
+                var initiator = remainingInitiators.Dequeue();
 
-                if (initiator.Match != null)
+                if (!initiator.HasRemainingProposals) continue;
+
+                var nextSelection = selectors[initiator.Preferences[initiator.NextProposalIndex++]];
+
+                if (!nextSelection.HasMatch())
                 {
-                    remainingInitiators.Dequeue();
+                    Match(initiator, nextSelection);
                 }
-
+                else
+                {
+                    var selectorsMatch = nextSelection.Match;
+                    if (nextSelection.Prefers(initiator))
+                    {
+                        UnMatch(nextSelection);
+                        Match(initiator, nextSelection);
+                    }
+                    else
+                    {
+                        remainingInitiators.Enqueue(initiator);
+                    }
+                }
             }
+        }
 
-            return new int[0][];
+        void Match(Initiator initiator, Selector selector)
+        {
+            initiator.Match = selector;
+            selector.Match = initiator;
+        }
+
+        void UnMatch(Selector selector)
+        {
+            var initiator = selector.Match;
+            selector.Match = null;
+            initiator.Match = null;
+        }
+
+        void PreRunSetup(Collection<Initiator> initiators, Collection<Selector> selectors)
+        {
+            //This is an O(n^2) setup operation, but prevents having to do an O(n) lookup down the initiators
+            //to compare a current match with a new prosal, which would push the overall complexity to O(n^3)
+            //Worse for very small sets (n < 2, laughable) as its now O(n^2) + O(n^2), but better for large sets.
+            foreach (var selector in selectors)
+            {
+                selector.InitialisePreferenceDict(initiators);
+            }
         }
     }
 }
