@@ -1,4 +1,5 @@
 using AdvancedAlgosAssignment1;
+using AdvancedAlgosAssignment1.Models;
 
 namespace AdvancedAlgosAssignment1Test
 {
@@ -14,13 +15,19 @@ namespace AdvancedAlgosAssignment1Test
         [Test]
         public void EmptyList()
         {
-            throw new NotImplementedException();
+            Assert.DoesNotThrow(() => { algo.Match(Array.Empty<Initiator>(), Array.Empty<Selector>()); });
         }
 
         [Test]
         public void SizeOneMatches() 
         {
-            throw new NotImplementedException();
+            var initiators = helper.CreateInitiators([new[] { 0 }]);
+            var selectors = helper.CreateSelectors([new[] { 0 }]);
+
+            RunMatch(initiators, selectors);
+
+            Assert.That(selectors[0], Is.SameAs(initiators[0].Match));
+            Assert.That(initiators[0], Is.SameAs(selectors[0].Match));
         }
 
         [Test]
@@ -71,6 +78,8 @@ namespace AdvancedAlgosAssignment1Test
         {
             throw new NotImplementedException();
         }
+
+        void RunMatch(IList<Initiator> initiators, IList<Selector> selectors) => algo.Match(initiators, selectors);
 
         Helper helper;
         GaleShapelyAlgo algo;

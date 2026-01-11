@@ -10,14 +10,14 @@ namespace AdvancedAlgosAssignment1Test
 {
     internal class Helper
     {
-        public Collection<Initiator> CreateInitiators(int[][] preferences)
+        public IList<Initiator> CreateInitiators(int[][] preferences)
         {
-            return new Collection<Initiator>(preferences.Select(x => new Initiator(x)).ToList());
+            return preferences.Select(x => new Initiator(x)).ToArray();
         }
 
-        public Collection<Selector> CreateSelectors(int[][] preferences)
+        public IList<Selector> CreateSelectors(int[][] preferences)
         {
-            return new Collection<Selector>(preferences.Select(x => new Selector(x)).ToList());
+            return preferences.Select(x => new Selector(x)).ToArray();
         }
 
         // Prefering an IsStable check rather than an exact check of matches,
