@@ -33,7 +33,7 @@ namespace AdvancedAlgosAssignment1
 
     //--------------------------------------------- README ---------------------------------------------\\
 
-    internal class GaleShapelyAlgo
+    public class GaleShapelyAlgo
     {
         public void Match(Collection<Initiator> initiators, Collection<Selector> selectors)
         {

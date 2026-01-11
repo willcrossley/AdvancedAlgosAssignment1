@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdvancedAlgosAssignment1.Models
 {
-    internal class Initiator : Participant<Selector>
+    public class Initiator : Participant<Selector>
     {
         //By storing a next proposal index on the Initiator, we can avoid
         //having to start looking through their preferences from the pref[currentRound]

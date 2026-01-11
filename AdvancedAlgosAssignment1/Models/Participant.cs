@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AdvancedAlgosAssignment1.Models
 {
-    internal abstract class Participant
+    public abstract class Participant
     //Had to make non generic parent for the MatchType assersion otherwise its
     //circular (would have to be Participant<Participant<MatchType>> which isn't allowed)
     { }
 
-    internal abstract class Participant<MatchType> : Participant 
+    public abstract class Participant<MatchType> : Participant 
         where MatchType : Participant
     {
         /// <summary>

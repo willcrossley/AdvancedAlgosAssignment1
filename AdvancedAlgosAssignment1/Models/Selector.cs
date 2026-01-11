@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdvancedAlgosAssignment1.Models
 {
-    internal class Selector : Participant<Initiator>
+    public class Selector : Participant<Initiator>
     {
         Dictionary<Initiator, int> preferenceDict;
 
