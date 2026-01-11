@@ -1,6 +1,6 @@
-namespace Tests
+namespace AdvancedAlgosAssignment1Test
 {
-    public class GaleShapelyAlgoTests
+    public class Tests
     {
         [SetUp]
         public void Setup()

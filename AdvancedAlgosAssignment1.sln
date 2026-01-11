@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedAlgosAssignment1", "AdvancedAlgosAssignment1\AdvancedAlgosAssignment1.csproj", "{CCC82757-3834-4C67-9368-460C8929A665}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedAlgosAssignment1Test", "AdvancedAlgosAssignment1Test\AdvancedAlgosAssignment1Test.csproj", "{0A4D21B7-C85A-4DF2-BB8D-252A35E02701}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CCC82757-3834-4C67-9368-460C8929A665}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCC82757-3834-4C67-9368-460C8929A665}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCC82757-3834-4C67-9368-460C8929A665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A4D21B7-C85A-4DF2-BB8D-252A35E02701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A4D21B7-C85A-4DF2-BB8D-252A35E02701}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A4D21B7-C85A-4DF2-BB8D-252A35E02701}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A4D21B7-C85A-4DF2-BB8D-252A35E02701}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
