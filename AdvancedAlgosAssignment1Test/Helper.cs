@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace AdvancedAlgosAssignment1Test
 {
-    internal class Helpers
+    internal class Helper
     {
         public Collection<Initiator> CreateInitiators(int[][] preferences)
         {
