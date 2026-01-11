@@ -24,7 +24,7 @@ namespace AdvancedAlgosAssignment1.Models
                 throw new ArgumentException("Pref size not same as init size");
             }
 
-            for (int i = 0; i < initiators.Count; i++)
+            for (var i = 0; i < initiators.Count; i++)
             {
                 var preference = Preferences[i];
                 var initiator = initiators[preference];
