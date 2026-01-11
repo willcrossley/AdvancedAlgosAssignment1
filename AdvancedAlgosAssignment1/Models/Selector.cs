@@ -17,7 +17,7 @@ namespace AdvancedAlgosAssignment1.Models
             preferenceDict = new Dictionary<Initiator, int>(preferences.Length); //Size declared here to help reduce rehashing during InitialisePreferenceDict
         }
 
-        public void InitialisePreferenceDict(Collection<Initiator> initiators)
+        public void InitialisePreferenceDict(IList<Initiator> initiators)
         {
             if (Preferences.Length != initiators.Count)
             {

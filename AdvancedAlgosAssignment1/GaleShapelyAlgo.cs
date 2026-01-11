@@ -35,7 +35,7 @@ namespace AdvancedAlgosAssignment1
 
     public class GaleShapelyAlgo
     {
-        public void Match(Collection<Initiator> initiators, Collection<Selector> selectors)
+        public void Match(IList<Initiator> initiators, IList<Selector> selectors)
         {
             var sizeOfSet = initiators.Count;
             var remainingInitiators = new Queue<Initiator>(initiators);
@@ -83,7 +83,7 @@ namespace AdvancedAlgosAssignment1
             initiator.Match = null;
         }
 
-        void PreRunSetup(Collection<Initiator> initiators, Collection<Selector> selectors)
+        void PreRunSetup(IList<Initiator> initiators, IList<Selector> selectors)
         {
             //This is an O(n^2) setup operation, but prevents having to do an O(n) lookup down the initiators
             //to compare a current match with a new prosal, which would push the overall complexity to O(n^3)
