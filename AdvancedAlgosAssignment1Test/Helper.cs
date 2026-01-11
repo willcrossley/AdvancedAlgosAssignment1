@@ -24,7 +24,7 @@ namespace AdvancedAlgosAssignment1Test
         // as the goal is the algorithm is to find a stable pairing from the set of all possible
         // stable pairings, which means tweaks/changes to the algo which keep it correct may affect
         // which set is chosen, in which case tests using exact matches would all have to be rewritten.
-        // I'll still add one or two hard checks for santiy though.
+        // I'll still do exact matches for simple cases though, especially where only one valid solution is present
         public bool IsStable(Collection<Initiator> initiators, Collection<Selector> selectors)
         {
             return true;
