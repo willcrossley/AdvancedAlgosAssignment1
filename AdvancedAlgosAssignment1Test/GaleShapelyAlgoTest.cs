@@ -225,23 +225,21 @@ namespace AdvancedAlgosAssignment1Test
             helper.AssertMatches(initiators, selectors, expectedInitiatorMatches, expectedSelectorMatches);
         }
 
-        [Repeat(10)]
+        [Repeat(20)] //I ran the suite without failure 1000 times so this test ran 20,000 times without failure, hopefully it doesn't fail when you run it.
         [Test]
         public void RandomisedStressTest()
         {
-            const int matrixSize = 10;
+            const int matrixSize = 20;
 
-            var initiators = helper.CreateInitiators(helper.CreateRandomPreferenceArray(matrixSize));
-            var selectors = helper.CreateSelectors(helper.CreateRandomPreferenceArray(matrixSize));
+            var initiatorPreferences = helper.CreateRandomPreferenceArray(matrixSize);
+            var initiators = helper.CreateInitiators(initiatorPreferences);
 
+            var selectorPreferences = helper.CreateRandomPreferenceArray(matrixSize);
+            var selectors = helper.CreateSelectors(selectorPreferences);
 
-            
-        }
+            RunMatch(initiators, selectors);
 
-        [Test]
-        public void TestOtherDataTypes()
-        {
-            throw new NotImplementedException();
+            Assert.That(helper.IsStable(initiators, selectors));
         }
 
         void RunMatch(IList<Initiator> initiators, IList<Selector> selectors) => algo.Match(initiators, selectors);

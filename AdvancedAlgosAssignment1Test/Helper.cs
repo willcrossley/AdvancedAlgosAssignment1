@@ -96,7 +96,7 @@ namespace AdvancedAlgosAssignment1Test
                 result[i] = new int[size];
                 for (var j = 0; j < size; j++)
                 {
-                    result[i][j] = i;
+                    result[i][j] = j;
                 }
 
                 for (var k = size - 1; k > 0; k--) //Fisher-Yates shuffle (for a bonus algorithm I found when looking this up ;) )
