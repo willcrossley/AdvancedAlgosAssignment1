@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace AdvancedAlgosAssignment1.Models
 {
-    internal class Selector : Participant
+    internal class Selector : Participant<Initiator>
     {
         Dictionary<Initiator, int> preferenceDict;
 
         public Selector(int[] preferences)
             :base(preferences)
         {
-            preferenceDict = new Dictionary<Initiator, int>();
+            preferenceDict = new Dictionary<Initiator, int>(preferences.Length); //Size declared here to help reduce rehashing during InitialisePreferenceDict
         }
 
         public void InitialisePreferenceDict(Collection<Initiator> initiators)
@@ -36,8 +36,8 @@ namespace AdvancedAlgosAssignment1.Models
         public bool Prefers(Initiator newProposal)
         {
             //O(1) lookup here saves this algo from being O(n^3)
-            //object.GetHashCode does a good enough job to ensure O(1) essentially always
-            return preferenceDict[newProposal] < preferenceDict[(Initiator)Match];
+            //object.GetHashCode does a good enough job to ensure O(1) lookups essentially always
+            return Match == null ? true : preferenceDict[newProposal] < preferenceDict[Match]; //Could do with an || but I find ternary much more readable here
         }
     }
 }

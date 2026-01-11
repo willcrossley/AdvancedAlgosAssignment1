@@ -60,9 +60,10 @@ namespace AdvancedAlgosAssignment1
                 }
                 else
                 {
-                    var selectorsMatch = nextSelection.Match;
                     if (nextSelection.Prefers(initiator))
                     {
+                        var selectorsMatch = nextSelection.Match;
+                        remainingInitiators.Enqueue(selectorsMatch);
                         UnMatch(nextSelection);
                         Match(initiator, nextSelection);
                     }
