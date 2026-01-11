@@ -26,7 +26,7 @@ namespace AdvancedAlgosAssignment1Test
         /// </summary>
         public void AssertMatches(IList<Initiator> initiators, IList<Selector> selectors, int[] initiatorMatches, int[] selectorMatches)
         {
-            for (int i = 0; i < initiatorMatches.Length; i++)
+            for (var i = 0; i < initiatorMatches.Length; i++)
             {
                 var initiator = initiators[i];
                 if (initiatorMatches[i] == -1)
@@ -39,7 +39,7 @@ namespace AdvancedAlgosAssignment1Test
                 }
             }
 
-            for (int i = 0; i < selectorMatches.Length; i++)
+            for (var i = 0; i < selectorMatches.Length; i++)
             {
                 var selector = selectors[i];
                 if (selectorMatches[i] == -1)
@@ -54,9 +54,63 @@ namespace AdvancedAlgosAssignment1Test
         }
 
         //Using IsStable for the random test where a constant equality isn't possible
-        public bool IsStable(Collection<Initiator> initiators, Collection<Selector> selectors)
+        public bool IsStable(IList<Initiator> initiators, IList<Selector> selectors)
         {
+            //look through each initiators higher preference
+            //if any selector has the current initiator at a higher preference than their current match
+                //fail
+            //else pass
+            foreach (var initiator in initiators)
+            {
+                var match = initiator.Match;
+                var matchIndex = FindIndex(match, selectors);
+
+                for (var i = 0; i < initiator.Preferences.Length; i++)
+                {
+                    var currentSelectorIndex = initiator.Preferences[i];
+
+                    if (currentSelectorIndex  == matchIndex)
+                    {
+                        break; //No better match for this initiator
+                    }
+
+                    var currentSelector = selectors[currentSelectorIndex];
+
+                    if (currentSelector.Prefers(initiator)) //No Match case covered in Prefers
+                    {
+                        return false;
+                    }
+                }
+            }
+
             return true;
+        }
+
+        public int[][] CreateRandomPreferenceArray(int size)
+        {
+            var result = new int[size][];
+            var rand = new Random();
+
+            for (int i  = 0; i < size; i++)
+            {
+                result[i] = new int[size];
+                for (var j = 0; j < size; j++)
+                {
+                    result[i][j] = i;
+                }
+
+                for (var k = size - 1; k > 0; k--) //Fisher-Yates shuffle (for a bonus algorithm I found when looking this up ;) )
+                {
+                    var randomIndex = rand.Next(i + 1);
+
+                    var temp = result[i][randomIndex];
+                    result[i][randomIndex] = result[i][k];
+                    result[i][k] = temp;
+
+                }
+            }
+
+            return result;
         }
 
         int FindIndex(Initiator initiator, IList<Initiator> initiators)
