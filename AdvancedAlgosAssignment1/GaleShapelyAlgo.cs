@@ -93,6 +93,8 @@ namespace AdvancedAlgosAssignment1
             //This is an O(n^2) setup operation, but prevents having to do an O(n) lookup down the initiators
             //to compare a current match with a new prosal, which would push the overall complexity to O(n^3)
             //Worse for very small sets (n < 2, laughable) as its now O(n^2) + O(n^2), but better for large sets.
+            //I could also just say its a requirement for the Selectors to have this data populated before the algorithm runs
+            //and not count it but I dont think thats reasonable.
             foreach (var selector in selectors)
             {
                 selector.InitialisePreferenceDict(initiators);
