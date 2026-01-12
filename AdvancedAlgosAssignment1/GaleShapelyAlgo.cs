@@ -33,7 +33,7 @@ namespace AdvancedAlgosAssignment1
         public void Match(IList<Initiator> initiators, IList<Selector> selectors)
         {
             var remainingInitiators = new Queue<Initiator>(initiators);
-            PreRunSetup(initiators, selectors); // always O(n^2)
+            PreRunSetup(initiators, selectors); // always O(n^2), might be reasonable to assume this is done outside the algorithm but I think in this case it should be included here.
 
             while (remainingInitiators.Count > 0) 
             {

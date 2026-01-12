@@ -47,7 +47,6 @@
     <Compile Include="Models\Initiator.cs" />
     <Compile Include="Models\Participant.cs" />
     <Compile Include="Models\Selector.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
