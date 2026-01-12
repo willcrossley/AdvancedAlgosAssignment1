@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="README-HowToRun.txt" />
+    <Content Include="README-Report.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
