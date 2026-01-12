@@ -1,5 +1,5 @@
 ﻿To get repo:
--copy all files from ed
+-copy all files from ed wihtin the Assignemnt1 folder
 OR
 -pull from https://github.com/willcrossley/AdvancedAlgosAssignment1 (contains version history etc)
 
