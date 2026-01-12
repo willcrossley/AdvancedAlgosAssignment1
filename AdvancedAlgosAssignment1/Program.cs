@@ -10,7 +10,7 @@ namespace AdvancedAlgosAssignment1
     {
         static void Main(string[] args)
         {
-
+            //Nothing here, run via the tests.
         }
     }
 }

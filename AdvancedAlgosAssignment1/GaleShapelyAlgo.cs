@@ -1,10 +1,5 @@
 ﻿using AdvancedAlgosAssignment1.Models;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdvancedAlgosAssignment1
 {
@@ -44,7 +39,7 @@ namespace AdvancedAlgosAssignment1
             {
                 var initiator = remainingInitiators.Dequeue(); // always O(1)
 
-                if (!initiator.HasRemainingProposals) continue;
+                if (!initiator.HasRemainingProposals) continue; //Required in the case that there are more initiators than selectors, so some will run out of matching possibilities
 
                 var nextSelection = selectors[initiator.Preferences[initiator.NextProposalIndex++]]; //always O(1)
 

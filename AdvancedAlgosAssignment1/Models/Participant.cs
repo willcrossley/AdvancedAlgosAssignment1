@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdvancedAlgosAssignment1.Models
+﻿namespace AdvancedAlgosAssignment1.Models
 {
     public abstract class Participant
     //Had to make non generic parent for the MatchType assersion otherwise its
@@ -20,6 +14,9 @@ namespace AdvancedAlgosAssignment1.Models
         /// </summary>
         public int[] Preferences;
         public MatchType Match;
+
+        //In a real world case I would likely also have an object (or base business object) Data property,
+        //and treat these classes as wrappers around the data they represent
 
         public Participant(int[] preferences)
         {
