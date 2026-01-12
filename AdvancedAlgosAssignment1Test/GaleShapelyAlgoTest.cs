@@ -71,7 +71,7 @@ namespace AdvancedAlgosAssignment1Test
             int[] expectedInitiatorMatches = [0, 2, 1];
             int[] expectedSelectorMatches = [0, 2, 1];
 
-            Assert.That(helper.IsStable(initiators, selectors)); //Doing this for all tests not easily verified as a sanity check
+            Assert.That(helper.IsStable(initiators, selectors)); //Doing this for all tests that are not easily verified as a sanity check
             helper.AssertMatches(initiators, selectors, expectedInitiatorMatches, expectedSelectorMatches); //and this for a more rigorous check
         }
 

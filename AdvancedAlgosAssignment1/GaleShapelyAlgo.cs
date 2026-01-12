@@ -37,17 +37,16 @@ namespace AdvancedAlgosAssignment1
     {
         public void Match(IList<Initiator> initiators, IList<Selector> selectors)
         {
-            var sizeOfSet = initiators.Count;
             var remainingInitiators = new Queue<Initiator>(initiators);
-            PreRunSetup(initiators, selectors);
+            PreRunSetup(initiators, selectors); // always O(n^2)
 
-            while (remainingInitiators.Count > 0)
+            while (remainingInitiators.Count > 0) 
             {
-                var initiator = remainingInitiators.Dequeue();
+                var initiator = remainingInitiators.Dequeue(); // always O(1)
 
                 if (!initiator.HasRemainingProposals) continue;
 
-                var nextSelection = selectors[initiator.Preferences[initiator.NextProposalIndex++]];
+                var nextSelection = selectors[initiator.Preferences[initiator.NextProposalIndex++]]; //always O(1)
 
                 if (!nextSelection.HasMatch())
                 {
@@ -55,8 +54,9 @@ namespace AdvancedAlgosAssignment1
                 }
                 else
                 {
-                    if (nextSelection.Prefers(initiator))
+                    if (nextSelection.Prefers(initiator)) // O(1) thanks to dictionary use.
                     {
+                        //all O(1)
                         var selectorsMatch = nextSelection.Match;
                         remainingInitiators.Enqueue(selectorsMatch);
                         UnMatch(nextSelection);
